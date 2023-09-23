@@ -5,7 +5,7 @@ model = YOLO('./yolov8_pretrained/yolov8n.pt')
 
 while True:
     ret, frame = cap.read()
-    result = model.predict(frame, save=False, conf=0.3)
+    result = model.predict(frame, save=False, conf=0.2)
     if not ret:
         break
     cv2.imshow('yolo', result[0].plot())

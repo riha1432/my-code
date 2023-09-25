@@ -5,7 +5,7 @@ cap = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv001.stream')
 model = YOLO('./yolov8_pretrained/yolov8n.pt')
 
 while True:
-    time.sleep(0.001)
+    time.sleep(0.0001)
     #    cap = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv001.stream')
     ret, frame = cap.read()
     result = model.predict(frame, save=False, conf=0.5)

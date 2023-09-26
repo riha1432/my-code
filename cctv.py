@@ -9,7 +9,7 @@ while True:
     #    cap = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv001.stream')
     for i in range(3):
         ret, frame = cap.read()
-    result = model.predict(frame, save=False, conf=0.5)
+    result = model.predict(frame, save=False, conf=0.3)
     if not ret:
         break
     cv2.imshow('yolo', result[0].plot())

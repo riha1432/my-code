@@ -15,7 +15,7 @@ def gen_frames():
     if not ret:
       break
     else:
-      result = model.predict(frame, save=False, conf=0.3)
+      result = model.predict(frame, save=False, conf=0.4)
       ret, buffer = cv2.imencode('.jpg', result[0].plot())
       frame = buffer.tobytes()
       yield (b'--frame\r\n'

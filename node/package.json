@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "node-rtsp-stream": "^0.0.9"
+    "node-rtsp-stream": "^0.0.9",
+    "rtsp-ffmpeg": "^0.0.17",
+    "socket.io": "^4.7.2"
   }
 }

@@ -11,8 +11,9 @@ app.get('/', (req, res) => {
     // collect data from script
     python.stdout.on('data', function (data) {
         console.log('Pipe data from python script ...');
-        dataToSend = data.toString();
+        dataToSend = data;
     });
+
     // in close event we are sure that stream from child process is closed
     python.on('close', (code) => {
         console.log(`child process close all stdio with code ${code}`);

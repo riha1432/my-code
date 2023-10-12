@@ -5,7 +5,7 @@ import struct # 바이트(bytes) 형식의 데이터 처리 모듈
 
 # 서버 ip 주소 및 port 번호
 ip = '192.168.1.3'
-port = 50001
+port = 9000
 
 # 카메라 또는 동영상
 capture = cv2.VideoCapture(0)

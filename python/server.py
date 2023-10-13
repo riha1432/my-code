@@ -16,7 +16,7 @@ def recvall(sock, count):
 
 
 HOST = '0.0.0.0'
-PORT = 8080
+PORT = 8090
 
 # TCP 사용
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

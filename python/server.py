@@ -83,40 +83,48 @@
 # # 모든 창 닫기
 # cv2.destroyAllWindows()
 
-# -*- coding: utf8 -*-
-import cv2
 import socket
+import cv2
 import numpy as np
- 
-## TCP 사용
+
+
+# socket에서 수신한 버퍼를 반환하는 함수
+def recvall(sock, count):
+    # 바이트 문자열
+    buf = b''
+    while count:
+        newbuf = sock.recv(count)
+        if not newbuf: return None
+        buf += newbuf
+        count -= len(newbuf)
+    return buf
+
+
+HOST = ''
+PORT = 8485
+
+# TCP 사용
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-## server ip, port
-s.connect(('10.10.104.234', 8485))
- 
- 
-## webcam 이미지 capture
-cam = cv2.VideoCapture(0)
- 
-## 이미지 속성 변경 3 = width, 4 = height
-cam.set(3, 320);
-cam.set(4, 240);
- 
-## 0~100에서 90의 이미지 품질로 설정 (default = 95)
-encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]
- 
+
+print('Socket created')
+
+# 서버의 아이피와 포트번호 지정
+s.bind((HOST, PORT))
+print('Socket bind complete')
+# 클라이언트의 접속을 기다린다. (클라이언트 연결을 10개까지 받는다)
+s.listen(10)
+print('Socket now listening')
+
+# 연결, conn에는 소켓 객체, addr은 소켓에 바인드 된 주소
+conn, addr = s.accept()
+
 while True:
-    # 비디오의 한 프레임씩 읽는다.
-    # 제대로 읽으면 ret = True, 실패면 ret = False, frame에는 읽은 프레임
-    ret, frame = cam.read()
-    # cv2. imencode(ext, img [, params])
-    # encode_param의 형식으로 frame을 jpg로 이미지를 인코딩한다.
-    result, frame = cv2.imencode('.jpg', frame, encode_param)
-    # frame을 String 형태로 변환
-    data = np.array(frame)
-    stringData = data.tostring()
- 
-    #서버에 데이터 전송
-    #(str(len(stringData))).encode().ljust(16)
-    s.sendall((str(len(stringData))).encode().ljust(16) + stringData)
- 
-cam.release()
+    # client에서 받은 stringData의 크기 (==(str(len(stringData))).encode().ljust(16))
+    length = recvall(conn, 16)
+    stringData = recvall(conn, int(length))
+    data = np.fromstring(stringData, dtype='uint8')
+
+    # data를 디코딩한다.
+    frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
+    cv2.imshow('ImageWindow', frame)
+    cv2.waitKey(1)

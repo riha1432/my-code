@@ -100,8 +100,8 @@ def recvall(sock, count):
     return buf
 
 
-HOST = ''
-PORT = 8485
+HOST = '10.10.104.134'
+PORT = 8080
 
 # TCP 사용
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

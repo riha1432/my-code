@@ -12,8 +12,8 @@ s.connect(('10.10.104.134', 8485))
 cam = cv2.VideoCapture(0)
  
 ## 이미지 속성 변경 3 = width, 4 = height
-cam.set(3, 320);
-cam.set(4, 240);
+cam.set(3, 640);
+cam.set(4, 480);
  
 ## 0~100에서 90의 이미지 품질로 설정 (default = 95)
 encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]

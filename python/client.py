@@ -5,7 +5,7 @@ import numpy as np
 ## TCP 사용
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ## server ip, port
-s.connect(('10.10.105.134', 8090))
+s.connect(('0.0.0.0', 8090))
  
  
 ## webcam 이미지 capture

@@ -15,7 +15,7 @@ def recvall(sock, count):
     return buf
 
 
-HOST = '192.168.0.100'
+HOST = '1.1.1.1'
 PORT = 4000
 
 # TCP 사용

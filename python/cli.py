@@ -3,7 +3,7 @@ import cv2
 import pickle
 import struct
 SERVER_IP = '0.0.0.0'
-SERVER_PORT = 8080
+SERVER_PORT = 8090
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((SERVER_IP, SERVER_PORT))

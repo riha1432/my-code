@@ -2,7 +2,6 @@ import socket
 import cv2
 import pickle
 import struct
-
 SERVER_IP = '0.0.0.0'
 SERVER_PORT = 8080
 

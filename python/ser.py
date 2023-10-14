@@ -15,7 +15,7 @@ def recvall(sock, count):
     return buf
 
 
-HOST = '0.0.0.0'
+HOST = '0.0.0.01'
 PORT = 8080
 
 # TCP 사용

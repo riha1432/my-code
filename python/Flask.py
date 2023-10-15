@@ -1,11 +1,11 @@
 from flask import Flask, render_template, Response
 import cv2
-from ultralytics import YOLO
+# from ultralytics import YOLO
 import time
 
 camera = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv001.stream')
-camera = cv2.VideoCapture('http://10.10.105.61:8090')
-model = YOLO('./yolov8_pretrained/yolov8n.pt')
+# camera = cv2.VideoCapture('http://10.10.105.61:8090')
+# model = YOLO('./yolov8_pretrained/yolov8n.pt')
 app = Flask(__name__)
 
 def gen_frames():
@@ -15,8 +15,8 @@ def gen_frames():
     if not ret:
       break
     else:
-      result = model.predict(frame, save=False, conf=0.4)
-      ret, buffer = cv2.imencode('.jpg', result[0].plot())
+      # result = model.predict(frame, save=False, conf=0.4)
+      # ret, buffer = cv2.imencode('.jpg', result[0].plot())
       ret, buffer = cv2.imencode('.jpg', frame)
 
       frame = buffer.tobytes()
@@ -29,7 +29,7 @@ def video_feed():
 
 @app.route('/')
 def index():
-  return render_template('web.html')
+  return render_template('video.html')
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0',port=9900,debug=True,ssl_context='adhoc')
+  app.run(host='0.0.0.0',port=8080,debug=True)

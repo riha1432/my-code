@@ -32,4 +32,5 @@ def index():
   return render_template('video.html')
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0',port=8080,debug=False,ssl_context='adhoc')
+  # app.run(host='0.0.0.0',port=8080,debug=False,ssl_context='adhoc')
+  app.run(host='0.0.0.0',port=8080,debug=False)

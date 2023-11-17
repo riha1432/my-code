@@ -4,7 +4,7 @@ from ultralytics import YOLO
 import time
 
 camera = cv2.VideoCapture('rtsp://210.99.70.120:1935/live/cctv001.stream')
-camera = cv2.VideoCapture('http://0.0.0.0:8090')
+# camera = cv2.VideoCapture('http://0.0.0.0:8090')
 model = YOLO('./yolov8_pretrained/yolov8n.pt')
 app = Flask(__name__)
 
